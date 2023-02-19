@@ -57,19 +57,19 @@
                         </li>
                         <li>
                             <label for="topLeft">Top Left</label>
-                            <input type="range" id="topLeft" value="0"  min="0" max="width">
+                            <input type="range" id="topLeft" value="0"  min="0" max="300">
                         </li>
                         <li>
                             <label for="topRight">Top Right</label>
-                            <input type="range" id="topRight" value="0"  min="0" max="width">
+                            <input type="range" id="topRight" value="0"  min="0" max="300">
                         </li>
                         <li>
                             <label for="bottomLeft">Bottom Left</label>
-                            <input type="range" id="bottomLeft" value="0"  min="0" max="width" >
+                            <input type="range" id="bottomLeft" value="0"  min="0" max="300" >
                         </li>
                         <li>
                             <label for="bottomRight">Bottom Right</label>
-                            <input type="range" id="bottomRight" value="0"  min="0" max="width">
+                            <input type="range" id="bottomRight" value="0"  min="0" max="300">
                         </li>
                     </div>
                     
@@ -78,19 +78,24 @@
                     <div class="down">
                         <li>
                             <label for="x">Shadow X</label>
-                            <input type="range" id="x" value="0" min="-50" max="50">
+                            <input type="range" id="x" value="0" min="-50" max="50" class = "check">
                         </li>
                         <li>
                             <label for="y">Shadow Y</label>
-                            <input type="range" id="y" value="0" min="-50" max="50">
+                            <input type="range" id="y" value="0" min="-50" max="50" class = "check">
                         </li>
                         <li>
                             <label for="alpha">Alpha</label>
-                            <input type="range" id="alpha" value="0"  min="0" max="50">
+                            <input type="range" id="alpha" value="0"  min="0" max="100" class = "check">
                         </li>
-                        <li>
-                            <label for="blur">Blur</label>
-                            <input type="range" id="blur" value="0.0" step="0.1" min="0" max="1">
+                        <li class="status">
+                            <label class="radio"  for="status">
+                                <span>Inset</span>
+                                <input type="radio"  name="status" value = "inset" >
+                                <span>Unset</span>
+                                <input type="radio"  name="status" value = "" >
+                            </label>
+                            <div class="warning">Please choose the typ of shadow below</div>
                         </li>
                     </div>
                 </div>
@@ -111,7 +116,7 @@
                     <div class="up">
                         <li>
                             <label for="text">Button Text</label>
-                            <input type="text" id="text" value="Button"  placeholder=" Button Name ">
+                            <input type="text" id="text" value="Button Name"  placeholder=" Button Name ">
                         </li>
                         <li>
                             <label for="size">Border <input type="color" id="borderColor"></label>
@@ -119,15 +124,15 @@
                         </li>
                         <li>
                             <label for="radius">Border Radius</label>
-                            <input type="range" id="radius" value="0"  min="0" max="100">
+                            <input type="range" id="radius" value="0"  min="0" max="200">
                         </li>
                         <li>
                             <label for="paddingUp">Padding Vertically</label>
-                            <input type="range" id="paddingUp" value="0"  min="0" max="100">
+                            <input type="range" id="paddingUp" value="0"  min="0" max="150">
                         </li>
                         <li>
                             <label for="paddingDown">Padding Horizontally</label>
-                            <input type="range" id="paddingDown" value="0"  min="0" max="100">
+                            <input type="range" id="paddingDown" value="0"  min="0" max="150">
                         </li>
                     </div>
                     <!-- ----------------------------------------------------------------------------- -->
@@ -140,30 +145,35 @@
                         </li>
                         <li>
                             <label for="xBtn">Shadow X </label>
-                            <input type="range" id="xBtn" value="0" min="-50" max="50">
+                            <input type="range" id="xBtn" value="0" min="-50" max="50" class = "check">
                         </li>
                         <li>
                             <label for="yBtn">Shadow Y</label>
-                            <input type="range" id="yBtn" value="0" min="-50" max="50">
+                            <input type="range" id="yBtn" value="0" min="-50" max="50" class = "check">
                         </li>
                         <li>
                             <label for="alphaBtn">Alpha</label>
-                            <input type="range" id="alphaBtn" value="0"  min="0" max="50">
+                            <input type="range" id="alphaBtn" value="0"  min="0" max="100" class = "check"> 
                         </li>
-                        <li>
-                            <label for="blurBtn">Blur</label>
-                            <input type="range" id="blurBtn" value="0.0" step="0.1" min="0" max="1">
+                        <li class="status">
+                            <label class="radio"  for="status">
+                                <span>Inset</span>
+                                <input type="radio"  name="status" value = "inset" >
+                                <span>Unset</span>
+                                <input type="radio"  name="status" value = "" >
+                            </label>
+                            <div class="warning">Please choose the typ of shadow below</div>
                         </li>
                     </div>
                 </div>
 
                 <!-- ========================================================================================== -->
                 <li>
-                        <label for="shadowBtn">Shadow Color <input type="color" id="shadowBtn" ></label>
-                </li>
-                <li>
                     <label for="background">Background Color <input type="color"  id="background"></label>
                     
+                </li>
+                <li>
+                        <label for="shadowBtn">Shadow Color <input type="color" id="shadowBtn" ></label>
                 </li>
                 <li id="lastInput">
                     <button class="btn" id="resetBtn">Reset</button>
