@@ -23,7 +23,6 @@ let allBtnList = document.querySelectorAll(".controller #buttonList li input");
 let xAxis = document.getElementById("x");
 let yAxis = document.getElementById("y");
 let alpha = document.getElementById("alpha");
-let Blur = document.getElementById("blur");
 let color = document.getElementById("color");
 let shadowColor = document.getElementById("shadow");
 
@@ -66,13 +65,59 @@ let shapeReset = document.getElementById("resetShape");
 let xBtn = document.getElementById("xBtn");
 let yBtn = document.getElementById("yBtn");
 let alphaBtn = document.getElementById("alphaBtn");
-let blurBtn = document.getElementById("blurBtn");
 let shadowColorBtn = document.getElementById("shadowBtn");
 
 let text = document.getElementById("text");
 
 
+let checkBox = document.querySelectorAll(".status .radio input");
 
+
+let check = document.querySelectorAll(".check");
+// let btnWarn = document.querySelectorAll(".btnWarn");
+let warningMsg = document.querySelectorAll(".warning");
+
+
+check.forEach((e) => {
+    e.addEventListener("input", () =>{
+        if(!checkBox.checked){
+            warningMsg.style.visibility = "visible";
+        }else{
+            warningMsg.style.visibility = "hidden";
+        }
+    })
+})
+// btnWarn.forEach((e) => {
+//     e.addEventListener("input", () => {
+//         if(!checkBox.checked){
+//             warningMsg.style.visibility = "visible";
+//         }else if(checkBox.checked){
+//             warningMsg.style.visibility = "hidden";
+//         }
+//     })
+// })
+
+function radioChecked(){
+    checkBox.forEach(function(checkBox){
+        if(checkBox.checked){
+            div.style.boxShadow = `${checkBox.value} ${x.value}px ${y.value}px ${alpha.value}px 0px ${shadowColor.value}`;
+            newBtn.style.boxShadow = `${checkBox.value} ${xBtn.value}px ${yBtn.value}px ${alphaBtn.value}px 0px ${shadowColorBtn.value}`;
+        }else if(checkBox.checked.value === "inset"){
+            shadowCopyString = "inset";
+        }else(shadowCopyString = "outset")
+    })
+};
+// ?????????? you should check this again
+
+let shadowCopyString = "inset";
+function radioCheckBoxCopyValue(){
+    
+    console.log(shadowCopyString)
+}
+
+
+
+radioCheckBoxCopyValue();
 
 function createAppendShape(){
     div.classList.add("css")
@@ -139,40 +184,8 @@ genShape.onclick = function(){
 
 
 
-//function create & append child the contained the css code
-function copyCode(){
-        //create element that contained the css code
-        let span = document.createElement("span");
-
-        let copyCss = document.createElement("div");
-        copyCss.classList = "css";
-        cont.appendChild(span);
-        cont.appendChild(copyCss);
-        span.innerHTML = "STYLE CODE NUMBER  " + counter;
-
-        if(codeSet === true){
-            copyCss.innerHTML = `
-            <p> width: ${width.value}px ;</p>
-            <p> height: ${height.value}px ;</p>
-            <p> box-shadow: ${x.value}px ${y.value }px ${alpha.value}px ${Blur.value}px ${shadowColor.value} ;</p>
-            <p> border-radius: ${topLeft.value}px ${topRight.value }px ${bottomRight.value}px ${bottomLeft.value}px ;</p>
-            <p> background-color: ${color.value} ;</p>
-            `}else{
-                copyCss.innerHTML = `
-                <p> color: ${fontColor.value} ;</p>
-                <p> border: ${size.value}px solid ${borderColor.value} ;</p>
-                <p> padding: ${paddingUp.value}px ${paddingDown.value}px  ;</p>
-                <p> font-size: ${font.value}rem ;</p>
-                <p> box-shadow: ${xBtn.value}px ${yBtn.value}px ${alphaBtn.value}px ${blurBtn.value}px ${shadowColorBtn.value} ;</p>
-                <p> border-radius: ${borderRadius.value}px ;</p>
-                <p> background-color: ${backgroundColor.value} ;</p>
-                `
-            }
-        
-        }
-            
-        
-// on click function generate css code
+    
+    // on click function generate css code
 btn.onclick = function(){
     btn.innerHTML = "CSS Done!"
     btn.classList.add("clicked");
@@ -187,7 +200,7 @@ btn.onclick = function(){
     copyCode();
 
     counter += 1;
-
+    
     cont.style.display = 'block';
     //  print the css code in console 
     // console.log(`
@@ -212,7 +225,8 @@ allShapeList.forEach(function(ele){
         div.style.borderTopRightRadius = topRight.value + 'px';
         div.style.borderBottomRightRadius = bottomRight.value + 'px';
         div.style.borderBottomLeftRadius = bottomLeft.value + 'px';
-        div.style.boxShadow = `${x.value}px ${y.value}px ${alpha.value}px ${Blur.value}px ${shadowColor.value}`;
+        // div.style.boxShadow = `${checkBox.value} ${x.value}px ${y.value}px ${alpha.value}px 0px ${shadowColor.value}`;
+        radioChecked();
     })
 });
 
@@ -226,26 +240,60 @@ allBtnList.forEach(function(ele){
         newBtn.style.padding = `${paddingUp.value}px ${paddingDown.value}px`
         newBtn.style.color = fontColor.value;
         newBtn.style.fontSize = `${font.value}em`;
-        newBtn.style.boxShadow = `${xBtn.value}px ${yBtn.value}px ${alphaBtn.value}px ${blurBtn.value}px ${shadowColorBtn.value}`;
+        
         newBtn.style.backgroundColor= backgroundColor.value;
         newBtn.innerHTML =  btnText.value;
-
+        radioChecked();
+        
     })
 })
 
+//function create & append child the contained the css code
+function copyCode(){
+        //create element that contained the css code
+        let span = document.createElement("span");
+
+        let copyCss = document.createElement("div");
+        copyCss.classList = "css";
+        cont.appendChild(span);
+        cont.appendChild(copyCss);
+        span.innerHTML = "STYLE CODE NUMBER  " + counter;
+
+        if(codeSet === true){
+            
+            copyCss.innerHTML = `
+            <p> width: ${width.value}px ;</p>
+            <p> height: ${height.value}px ;</p>
+            <p> box-shadow: ${shadowCopyString} ${x.value}px ${y.value }px ${alpha.value}px  0px ${shadowColor.value};</p>
+            <p> border-radius: ${topLeft.value}px ${topRight.value }px ${bottomRight.value}px ${bottomLeft.value}px ;</p>
+            <p> background-color: ${color.value} ;</p>
+            `}else{
+                copyCss.innerHTML = `
+                <p> color: ${fontColor.value} ;</p>
+                <p> border: ${size.value}px solid ${borderColor.value} ;</p>
+                <p> padding: ${paddingUp.value}px ${paddingDown.value}px  ;</p>
+                <p> font-size: ${font.value}rem ;</p>
+                <p> box-shadow: ${shadowCopyString} ${xBtn.value}px ${yBtn.value}px ${alphaBtn.value}px 0px ${shadowColorBtn.value};</p>
+                <p> border-radius: ${borderRadius.value}px ;</p>
+                <p> background-color: ${backgroundColor.value} ;</p>
+                `
+            }
+        
+        }
+            
 
 //reset button of all values 
 shapeReset.onclick = function(){
-
+    
     div.style.width = 200 + 'px';
     div.style.height = 200 + 'px';
     div.style.borderTopLeftRadius =  0 + 'px';
     div.style.borderTopRightRadius = 0 + 'px';
     div.style.borderBottomRightRadius = 0 + 'px';
     div.style.borderBottomLeftRadius = 0 + 'px';
-    div.style.boxShadow = `${0}px ${0}px ${0}px ${"#000"}`;
-
-
+    div.style.boxShadow = `${0}px ${0}px ${0}px 0px `;
+    
+    
     width.value = 0;
     height.value = 0;
     topRight.value = 0;
@@ -255,7 +303,7 @@ shapeReset.onclick = function(){
     x.value = 0;
     y.value = 0;
     alpha.value = 0;
-    Blur.value = 0;    
+
 }
 
 btnReset.onclick = function(){
@@ -267,14 +315,14 @@ btnReset.onclick = function(){
     xBtn.value = 0;
     yBtn.value = 0;
     alphaBtn.value = 0;
-    blurBtn.value = 0; 
-    text.value = "";
+    text.value = "Button Name";
+    newBtn.innerHTML = "Button Name";
     newBtn.style.border = "none";
     newBtn.style.borderRadius = borderRadius.value + 'px'; 
     newBtn.style.padding = paddingUp.value + 'px';
     newBtn.style.backgroundColor = "#000";
     newBtn.style.color = "#fff";
     newBtn.style.fontSize = font.value + 'rem';
-    newBtn.style.boxShadow = `${0}px ${0}px ${0}px ${"#000"}`;
+    newBtn.style.boxShadow = `${0}px ${0}px ${0}px 0px `;
 
 }
